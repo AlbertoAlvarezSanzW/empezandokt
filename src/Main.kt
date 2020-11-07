@@ -133,12 +133,59 @@ fun main(){
     println(cad)
 
 
-    println("\n\n\n\n")
+    println("\n\n")
+
+    println("\n Casting \n")
+    var myNumber = 2
+    val myInterger = myNumber as Int
+    println("la variable vale:"+myInterger)
+
+    println("\nArrays")
+    val array = arrayOf("Hola","adios","esto","es una lista")
+    for(x in array){
+        println(x)
+    }
+    println("\nMostrar el contenido de un Array en una lista:")
+    println(array.contentToString())
+
+    println("\n\nCreación de una lista")
+    val lista2 = mutableListOf(1,2,3,4,5)
+    println(lista2)
+    // teniendo los elementos ya en una lista podemos asignar directamente
+    val lista3 = array.asList()
+    println(lista3)
+
+
+    println("\n\nCreación de listas aplicando funciones: ")
+    val listaV = MutableList(99) {pos -> if (pos % 2 == 0) pos * -1 else pos}
+    //es posible crear listas de listas:
+    val list1 = mutableListOf(1,2,3,"a",2.3)
+    val list2 = mutableListOf(1,2.1)
+    val array1 = arrayOf("Hola","Adios") // <- para leer un array HARA HALTA 1 FOR
+    val listaD = mutableListOf(list1,list2,array1)
+    println(listaD)
+
+
+
+    println("\n\nBucles Avanzados")
+    for (element in list.indices){
+        print("$element")
+    }
+
+    println("\n\nEn caso de necesitar indice :")
+    for ((element, index) in list.withIndex()){
+        println("$element,$index")
+    }
+
+    /*
+    Ejercicio de Ahorcado !
+
+     */
 
     val palabra = "Ahorcado".toLowerCase()
 
-    var listapalabra = mutableListOf<Char>()
-    var listletras = mutableListOf<Char>()
+    var listapalabra = mutableListOf<Char>() // <-- importante
+    var listletras = mutableListOf<Char>() // <-- importante
 
     var letra:Char = ' '
     var contador = 0
@@ -170,6 +217,54 @@ fun main(){
 
 
 
+    //llamada a la función
+    funPolimorfica(15)
+    funConValor()
+    funPolimorfica(6)
+    funValorPorDefectoMultiple()
+    funValorPorDefectoMultiple(1,2)
+    funValorPorDefectoMultiple(integer2 = 4)
+    funValorPorDefectoMultiple(8)
+
+    println("\n\nFiltros")
+    val colores = mutableListOf("Rojo", "Azul", "Verde", "Naranja", "Amarillo")
+    // en este caso vamos a filtrar por "A"
+    val listaAMayuscula = colores.filter { it.contains("A") }
+    // en este caso vamos a filtrar por colores de 4
+    val listaCuatroLetras = colores.filter { it.length == 4 }
+    println(listaAMayuscula)
+    println(listaCuatroLetras)
+
+    println("\n\nLazys")
+    val lazyMayuscula = colores.asSequence().filter { it.contains("A") }
+    println(lazyMayuscula)      // a diferencia de los Filtros normales no se puede imprimir normal
+    lazyMayuscula.forEach {print("$it ")}   // se ha imprimir de esta manera
+
+
+    println("\n\n\n\nEJERCICIO DE FUNCIONES")
+    //EJERCICIO DE FUNCIONES
+    val ciudades = listOf("Alicante", "Almería", "Barcelona", "Bilbao", "Burgos", "Cádiz", "Cartagena", "Córdoba", "Gerona"
+            , "Gijón", "Granada", "Huelva", "Tenerife", "Ibiza", "Jerez", "Madrid", "Málaga", "Marbella", "Murcia", "Oviedo"
+            , "Pamplona", "Ronda", "Salamanca", "San Sebastián", "Santander", "Santiago", "Sevilla", "Tarragona", "Toledo",
+            "Valencia", "Zaragoza")
+
+    // Crea una lista con todas las ciudades que tengan la letra "a" mayuscula o minuscula
+    println(ejercicio1(ciudades))
+
+    // Crea una lista lazy list de todas las ciudades que tengan la letra "a" mayuscula o minuscula. Las que tengan una "A"
+    // deber ser mostradas en mayusculas todas las letras.
+    ejercicio2(ciudades)
+
+    // Elimina de ciudades todas las ciudades que tengan 8 letras. Recuerda que tu lista no Mutable
+    println(ejercicio3(ciudades))
+
+    // Escribe la lista de ciudades. Aquellas ciudades con una cantidad de letras impar al rever reves. Ej. Ibiza - azibI
+    // Resultado esperado: [Alicante, aíremlA, anolecraB, Bilbao, Burgos, zidáC, anegatraC, abodróC, Gerona, nójiG, adanarG, Huelva, Tenerife, azibI, zereJ, Madrid, Málaga, Marbella, Murcia, Oviedo, Pamplona, adnoR, acnamalaS, náitsabeS naS, rednatnaS, Santiago, alliveS, anogarraT, Toledo, Valencia, Zaragoza]
+    println(ejercicio5(ciudades))
+
+
+
+
 
     println("\n\n\n\n")
     println("PROBLEMA PIRAMIDE ADAPTADADO\n")
@@ -178,7 +273,8 @@ fun main(){
         maximo(10)
     }
 
-    fun maximo(size : Int){
+
+fun maximo(size : Int){
         repeat(size){
             altura(it, size)
             base(it)
@@ -213,6 +309,7 @@ fun funcionConParametros(numeroEjemplo: Int){
 }
 
 
+// Scanner !
 
 fun leerporteclado(): Int {
     var result: Int?
@@ -242,3 +339,52 @@ fun readCharFromKeyboard2(): Char {
     } while (result == null)
     return result
 }
+
+// función de polimorfismo, es como java
+fun funPolimorfica(){
+
+}
+fun funPolimorfica (integer : Int){
+
+}
+
+// Dar un valor ya por defecto:
+fun funConValor(integer : Int = 15){
+
+}
+
+fun funValorPorDefectoMultiple(integer1: Int = 15, integer2: Int = 10){
+    println("el valor recibido es un $integer1")
+    println("el valor recibido es un $integer2")
+
+}
+
+// EJERCICIO DE FUNCIONES
+fun ejercicio5(ciudades: List<String>): Any? {
+    val ciudadesMutable = ciudades.toMutableList()
+    val ciudadesImpares = ciudades.asSequence().filter { (it.length.rem(2) == 1) }
+    ciudadesImpares.forEach { ciudadImpar: String ->  ciudadesMutable.forEachIndexed{ index: Int, ciudad: String ->  if (ciudad.contentEquals(ciudadImpar)) ciudadesMutable[index] = ciudadesMutable[index].reversed() }  }
+    return ciudadesMutable
+}
+
+fun ejercicio3(ciudades: List<String>): MutableList<String> {
+    val ciudadesABorrar = ciudades.asSequence().filter { it.length == 8 }
+    // Las tres ultimas líneas podrían reducirse a esta:
+    // return ciudades.toMutableList().apply { removeAll(ciudadesABorrar) }
+    val ciudadesMutable = ciudades.toMutableList()
+    ciudadesMutable.removeAll(ciudadesABorrar)
+    return ciudadesMutable
+}
+
+fun ejercicio2(ciudades: List<String>) {
+    ciudades.asSequence().filter { it.contains("a") }
+    ciudades.forEach { if (it.contains("A")) print("${it.toUpperCase()}, ") else print("$it, ") }
+    println()
+}
+
+fun ejercicio1(ciudades: List<String>): List<String> {
+    // Tambien se puede hacer con expresiones regulares
+    return ciudades.filter { it.contains("a") || it.contains("A") }
+}
+
+
