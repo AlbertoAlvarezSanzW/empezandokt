@@ -1,4 +1,4 @@
-
+import java.util.*
 
 fun main(){
     // variable
@@ -108,8 +108,65 @@ fun main(){
     for (i in 0..10){
         println("la i corresponde ha: $i")
     }
+    println("\n\n")
+    println("Cadenas con diferentes tipos")
 
 
+    val list = listOf("Hola",2,3,"¿",0.1,"Que",1,"tal",0.9,"?")
+
+    var res = 0.0
+    var cad = ""
+    var i = 0
+
+    for(x in list.indices){
+        if(list[x] is String)
+            cad = cad + " " + list[x]
+        else if ( list[x] is Int ){
+            val num = list[x] as Int
+            res += num
+        } else if (list[x] is Double){
+            res += list[x] as Double
+        }
+        i++
+    }
+    println(res)
+    println(cad)
+
+
+    println("\n\n\n\n")
+
+    val palabra = "Ahorcado".toLowerCase()
+
+    var listapalabra = mutableListOf<Char>()
+    var listletras = mutableListOf<Char>()
+
+    var letra:Char = ' '
+    var contador = 0
+
+    palabra.forEach{
+        listapalabra.add('-')
+    }
+
+    while (listapalabra.contains('-')){
+        listapalabra.forEach {
+            print(it)
+        }
+        do{
+            println("\n Introduzca una letra por favor: ")
+            letra = readCharFromKeyboard2().toLowerCase()
+            if(listletras.contains(letra))
+                println("\n ¬_¬'U   La letra: "+letra+", ya ha sido anteriormente introducida... Mo se puede repetir!!! ")
+        }while(listletras.contains(letra))
+        listletras.add(letra)
+        contador++
+
+        for(i in palabra.indices){
+            if(palabra[i]==letra)
+                listapalabra.set(i,letra)
+        }
+    }
+    println("\nCongratulations!!!\nHa descubierto la palabra: "+palabra+"" +
+            "\nUsted ha necesitado: "+contador+" intentos")
 
 
 
@@ -147,7 +204,6 @@ fun main(){
     }
 
 
-
 fun funcionSinParametros(){
     println("Función sin parametros")
 }
@@ -156,3 +212,33 @@ fun funcionConParametros(numeroEjemplo: Int){
     println("la función con parametros tiene en su interior: $numeroEjemplo")
 }
 
+
+
+fun leerporteclado(): Int {
+    var result: Int?
+    val keyboardReader = Scanner(System.`in`)
+    do {
+        val selectedOption = keyboardReader.nextLine()
+        result = try {
+            selectedOption.toInt()
+        } catch (e: NumberFormatException) {
+            println("Lo que has introducido no es un número.")
+            null
+        }
+    } while (result == null)
+    return result
+}
+
+fun valorRandom(rango: IntRange): Int {
+    return rango.random()
+}
+
+fun readCharFromKeyboard2(): Char {
+    var result: Char?
+    val keyboardReader = Scanner(System.`in`)
+    do {
+        val selectedOption = keyboardReader.nextLine()
+        result = if (selectedOption.length == 1) selectedOption[0] else null
+    } while (result == null)
+    return result
+}
