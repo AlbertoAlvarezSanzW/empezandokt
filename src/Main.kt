@@ -87,8 +87,27 @@ fun main(){
     println("\n\nCondicional basico")
     if (num == 0) println("$num es igual a 0") else println("$num es diferente de 0")
     println("\n\nCondicional rangos")
-    if (num in 0..10)
+    if (num in 0..10) println("$num es un numero comprendido entre 0 y 10") else println("$num es mayor a 9")
 
+
+    println("\n\nSwitch que es el When")
+    // Condicional switch
+    when (num){
+        0 -> println("$num es igual a 0")
+        in 1..99 -> println("$num es un numero comprendido entre 0 y 9")
+        100,101 -> println("$num es 100 o 101")
+        else -> println("$num es menor de 0 y mayor de 101")
+    }
+
+    println("\n\n")
+    for (i in 0..10){
+        println("Ejecución del for"[i])
+    }
+
+    println("\n\n")
+    for (i in 0..10){
+        println("la i corresponde ha: $i")
+    }
 
 
 
@@ -126,24 +145,6 @@ fun main(){
             print("_")
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
