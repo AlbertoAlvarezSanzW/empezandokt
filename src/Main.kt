@@ -263,6 +263,80 @@ fun main(){
     println(ejercicio5(ciudades))
 
 
+    println("\n\nExtensiones en kotlin")
+
+    /*
+    Extensiones en kotlin
+
+    teniendo una clase ya existente, es posible añadile ciertas fincionalidades a traves de las cuales añaden metodos
+    adiccionales a esa clase
+     */
+
+    println("---EjemploExtensiones---")
+
+    val string1 = "0123456789"
+    val string2 = "Hola 1"
+    val string3 = "Hola 123"
+
+    println("String1 tiene ${string1.contadordeNumeros()} números, el String 2 tiene ${string2.contadordeNumeros()} número " +
+            "y el String 3 tiene ${string3.contadordeNumeros()} números.")
+
+
+    println("\n\nFunciones Lambdas")
+
+    /*
+    Una lamba es una forma de declarar una función de forma resumida, simplemente utilizando los {}
+    Es posible agregar parámetros { num : Int -> println("He recibido $num como parametro.")}
+
+    E incluso es posible devolver valores:
+    val hazSuma: (Int, Int) -> {num1 : Int, num2: Int -> num1+num2}
+    hazSuma(1,2)
+     */
+    println("\n\n")
+    // Agregar parametros
+    println("Agregar parametros en funciones lambdas")
+
+
+    // Podemos asignar lambdas a funciones.
+    val lambda = { println("Esto es una lamba en una variable.") }
+    // Y las ejecutamos así.
+    lambda()
+
+    // Es posiblre definir parámetros para la lambda.
+    val lambdaParametro = { num: Int -> println("He recibido $num como parametro.") }
+    // Y las ejecutamos así.
+    lambdaParametro(1)
+
+    // En este caso indicamos explicitamente que la lambda requiere de dos parametros Int y que devuelve un Int.
+    // Atencion, devuelve la ultima linea de la lambda
+    val hazSuma: (Int, Int) -> Int = { num1: Int, num2: Int -> num1 + num2 }
+    val hazResta: (Int, Int) -> Int = { num1: Int, num2: Int -> num1 - num2 }
+
+    println("Sumo ${hazSuma(2,1)} como parametro.")
+    println("Resto ${hazResta(2,1)} como parametro.")
+
+    println("Sumo ${example(hazSuma)} desde una lambda.")
+    println("Resto ${example(hazResta)} desde una lambda.")
+
+
+    println("\n\nMas funciones lambda")
+    val lista = listOf<Any>("1",2);
+
+    val ejercicio1 = {println("Hola")}
+    ejercicio1()
+    val ejercicio2 = {integer : Int -> println("Hola $integer")}
+    ejercicio2(1)
+    val ejercicio3 =  {integer : Int, listInteger : List<Any> -> println("Hola ${integer + listInteger.size}")}
+    ejercicio3(1, lista)
+    val ejercicio4 : (Int, List<Any>) -> Int = { integer: Int, listInteger: List<Any> -> integer + listInteger.size}
+    println("El numero es ${ejercicio4(1,lista)}")
+
+
+    println("\n\nFunciones: let, run, with")
+    /*
+
+     */
+
 
 
 
@@ -272,6 +346,45 @@ fun main(){
 
         maximo(10)
     }
+
+
+
+
+
+
+
+// función lambda
+fun example(functionAsParameter: (Int, Int) -> Int) : Int {
+    return functionAsParameter(2,1)
+}
+
+// Mas funciones lamdba
+fun ejercicio1() {
+    println("Hola")
+}
+
+fun ejercicio2(integer : Int) {
+    println("Hola $integer")
+}
+
+fun ejercicio3(integer : Int, listInteger : List<Any>) {
+    println("Hola ${integer + listInteger.size}")
+}
+
+fun ejercicio4(integer : Int, listInteger : List<Any>) : Int {
+    return integer + listInteger.size
+}
+
+
+
+
+// funcion contadorDenumeros (Extensión en kotlin)
+fun String.contadordeNumeros() : Int{
+    var contador = 0
+    forEach { if (it.isDigit()) contador++ }
+    return contador
+}
+
 
 
 fun maximo(size : Int){
