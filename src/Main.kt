@@ -455,6 +455,7 @@ fun functionLet(){
         // No se puede cambiar el valor de it.
     }
 }
+// FUNCIÓN ALSO
 
 fun functionAlso(){
     println("--- functionAlso ---")
@@ -483,7 +484,7 @@ fun functionAlso(){
     println("El resultado de also4 es ${resultado?.int1}")
 
 }
-
+// FUNCIONES LET
 fun functionLetVsAlso(){
     println("--- functionLetVsAlso ---")
 
