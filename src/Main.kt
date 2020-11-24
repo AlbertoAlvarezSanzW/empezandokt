@@ -134,7 +134,7 @@ fun main(){
     println(cad)
 
 
-    println("\n\n")
+    println("\n")
 
     println("\n Casting \n")
     var myNumber = 2
